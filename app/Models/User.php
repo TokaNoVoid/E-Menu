@@ -3,11 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+use Filament\Panel;
+use Filament\Models\Contracts\FilamentUser;
+
+class User extends Authenticatable implements FilamentUser, HasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -17,11 +21,30 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        $userImage = $this->avatar_url;
+        if ($userImage) {
+            return $userImage;
+        }    
+
+        $emailHash = md5(strtolower(trim($this->email)));
+        return "https://www.gravatar.com/avatar/{$emailHash}?s=600&d=identicon";
+
+    }
+
     protected $fillable = [
         'logo',
         'name',
         'username',
         'email',
+        'avatar_url',
         'password',
         'role'
     ];

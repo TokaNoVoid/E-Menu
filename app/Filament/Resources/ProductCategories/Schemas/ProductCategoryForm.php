@@ -38,6 +38,8 @@ class ProductCategoryForm
                         FileUpload::make('icon')
                             ->label('Icon Kategori')
                             ->required()
+                                // ->visibility('public')
+                                // ->disk('public')
                             ->image()
                             ->imageEditor()
                             ->imagePreviewHeight(250)          // Preview lebih besar agar tidak buram
