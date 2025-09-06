@@ -13,15 +13,15 @@ class UserInfolist
         return $schema
             ->components([
                 ImageEntry::make('logo')
-                    ->imageHeight(240)
-                    ->imageWidth(240)
+                    ->imageHeight(50)
+                    ->imageWidth(50)
                     ->circular()
                     ->extraImgAttributes([
                         'alt' => 'User Logo',
                         'loading' => 'lazy',
                     ]),
                 TextEntry::make('name')
-                    ->label('Full Name')
+                    ->label('Nama Toko')
                     ->badge()
                     ->color('primary'),
                 TextEntry::make('username')

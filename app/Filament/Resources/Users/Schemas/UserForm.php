@@ -29,11 +29,12 @@ class UserForm
                     ]),
 
                 TextInput::make('name')
+                    ->label('Nama Toko')
                     ->required()
-                    ->helperText('Nama lengkap pengguna.')
-                    ->placeholder('Contoh: John Doe')
+                    ->helperText('Nama Toko.')
+                    ->placeholder('ex: Warung Madura')
                     ->validationMessages([
-                        'required' => 'Nama lengkap wajib diisi.',
+                        'required' => 'Nama Toko wajib diisi.',
                     ]),
 
                 TextInput::make('username')
