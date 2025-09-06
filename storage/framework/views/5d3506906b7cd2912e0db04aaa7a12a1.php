@@ -36,7 +36,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <span id="qty">x1</span>
+                            <span id="qty"><?php echo e("x" . $detail->quantity); ?></span>
                         </div>
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -86,10 +86,11 @@
             </p>
         </div>
 
-        <a href="<?php echo e(route('customer.information', $store->username)); ?>" type="button"
+        <a href="<?php echo e(route('customer.information', $store->username)); ?>" data-checkout="true" id="checkoutBtn"
             class="flex justify-center rounded-full p-[14px_28px] bg-[#FF801A] font-normal text-white">
             Checkout
         </a>
+
     </div>
 </div>
 

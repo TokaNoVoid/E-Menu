@@ -35,7 +35,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <span id="qty">x1</span>
+                            <span id="qty">{{"x" . $detail->quantity }}</span>
                         </div>
                     </div>
                     @endforeach

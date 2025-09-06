@@ -24,7 +24,7 @@ class UsersTable
                     ->label('Logo Toko'),
                 TextColumn::make('name')
                     ->searchable()
-                    ->label('Nama Lengkap')
+                    ->label('Nama Toko')
                     ->sortable(),
                 TextColumn::make('username')
                     ->searchable()

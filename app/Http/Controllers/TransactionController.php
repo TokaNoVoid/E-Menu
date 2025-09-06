@@ -86,7 +86,7 @@ class TransactionController extends Controller
                ),
            );
 
-           $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+           $paymentUrl = \Midtrans\Snap::createTransaction(params: $params)->redirect_url;
 
            return  redirect($paymentUrl);
         }

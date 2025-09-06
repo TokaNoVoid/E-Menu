@@ -26,31 +26,23 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Ambil data cart dari localStorage
     const cartData = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // Filter produk berdasarkan ID di cartData
     const cartItems = document.querySelectorAll(".cart-item");
     cartItems.forEach((item) => {
         const productId = item.dataset.id;
-
-        // Cari produk di cartData
         const cartProduct = cartData.find((cart) => cart.id === productId);
 
         if (!cartProduct) {
-            // Jika produk tidak ada di cart, hapus
             item.remove();
         } else {
-            // Jika ada, update quantity dan notes
             const qtyElement = item.querySelector("#qty");
             const notesInput = item.querySelector("#notes");
 
             if (qtyElement) qtyElement.textContent = "x" + cartProduct.qty;
-            if (notesInput) notesInput.value = cartProduct.notes;
+            if (notesInput) notesInput.value = cartProduct.notes || "";
         }
     });
 
-    // Hitung total setelah elemen yang tidak ada dihapus
     calculateTotal();
 });
 
@@ -72,16 +64,48 @@ function calculateTotal() {
     ).textContent = `Rp ${total.toLocaleString("id-ID")}`;
 }
 
+// ===== Modifikasi submit form dengan validasi =====
 const paymentForm = document.getElementById("Form");
-const cartData = document.getElementById("cart-data");
+const cartDataInput = document.getElementById("cart-data");
 
 paymentForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const selectedPayment = document.querySelector(
+        'input[name="payment_method"]:checked'
+    );
 
-    cartData.value = JSON.stringify(cart);
+    // Validasi cart tidak kosong
+    if (cart.length === 0) {
+        alert("Keranjang belanja Anda kosong!");
+        return;
+    }
 
+    // Validasi metode pembayaran dipilih
+    if (!selectedPayment) {
+        alert("Silakan pilih metode pembayaran!");
+        return;
+    }
+
+    // Validasi setiap item
+    let invalidItem = false;
+    cart.forEach((item) => {
+        if (!item.id || !item.qty || item.qty <= 0) {
+            invalidItem = true;
+        }
+        if (!item.notes) {
+            item.notes = "";
+        }
+    });
+
+    if (invalidItem) {
+        alert("Terdapat item di keranjang yang tidak valid!");
+        return;
+    }
+
+    // Semua valid, simpan cart ke hidden input dan submit
+    cartDataInput.value = JSON.stringify(cart);
     paymentForm.submit();
-
     localStorage.removeItem("cart");
 });

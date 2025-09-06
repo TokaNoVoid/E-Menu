@@ -22,23 +22,28 @@ class Transaction extends Model
         'status',
     ] ;
 
-    public static function boot(){
-        parent::boot();
+public static function boot(){
+    parent::boot();
 
-        static::creating(function($model){
-            if(Auth::user()->role === 'store'){
-                $model->user_id = Auth::user()->id;
-            }
-        });
-        static::updating(function($model){
-            if(Auth::user()->role === 'store'){
-                $model->user_id = Auth::user()->id;
-            }
-        });
+    static::creating(function($model){
+        $user = Auth::user();
 
+        // Kalau user login dan role-nya store, otomatis isi user_id
+        if($user && $user->role === 'store'){
+            $model->user_id = $user->id;
+        }
 
-        
-    }
+        // Kalau guest, bisa tetap biarkan user_id null atau isi dengan default
+        // $model->user_id = $user ? $user->id : null; // opsional
+    });
+
+    static::updating(function($model){
+        $user = Auth::user();
+        if($user && $user->role === 'store'){
+            $model->user_id = $user->id;
+        }
+    });
+}
 
     public function user(){
         return $this->belongsTo(User::class);
