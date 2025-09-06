@@ -13,15 +13,12 @@ class FrontendController extends Controller
 
         $store = User::where('username', $request->username)->first();
 
-        // dd($store->productCategories);
-
         if (!$store)
             return abort(404);
 
         $populars = Product::where('user_id', $store->id)->where('is_popular', true)->get();
-        $product = Product::where('user_id', $store->id)->get();
+        $products = Product::where('user_id', $store->id)->get();
 
-
-        return view('Pages.index', compact('store', 'populars', 'product'));
+        return view('Pages.index', compact('store', 'populars', 'products'));
     }
 }

@@ -68,7 +68,8 @@
 
             <?php $__currentLoopData = $populars; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="swiper-slide !w-fit">
-                <a href="details.html" class="card">
+                <a href="<?php echo e(route('product.show', ['username'=> $store->username, 'id' => $product->id])); ?>"
+                    class="card">
                     <div
                         class="flex flex-col w-[210px] shrink-0 rounded-[8px] bg-white p-[12px] pb-5 gap-[10px] hover:bg-[#FFF7F0] hover:border-[1px] hover:border-[#F3AF00] transition-all duration-300 cursor-pointer">
                         <div
@@ -79,31 +80,36 @@
                             <!-- rating -->
                             <div
                                 class="absolute top-5 right-5 flex items-center gap-1 bg-white px-[8px] py-[4px] rounded-full">
-                                <img src="assets/images/icons/ic_star.svg" alt="rating" class="w-4 h-4">
-                                <p class="text-sm">4.8</p>
+                                <img src="<?php echo e(asset('assets/images/icons/ic_star.svg')); ?>" alt="rating" class="w-4 h-4">
+                                <p class="text-sm"><?php echo e($product->rating); ?></p>
                             </div>
                         </div>
                         <div class="flex flex-col gap-1">
                             <p class="text-[#F3AF00] font-[400] text-[12px]">
-                                Ramen
+                                <?php echo e($product->productCategory->name); ?>
+
                             </p>
                             <h3 class="text-[#353535] font-[500] text-[14px]">
-                                Spicy Ramen Level 3
+                                <?php echo e($product->name); ?>
+
                             </h3>
                             <p class="text-[#606060] font-[400] text-[10px]">
-                                Rich broth, spicy and tempting, with chashu topping
+                                <?php echo e($product->description); ?>
+
                             </p>
 
                         </div>
 
                         <div class="flex items-center justify-between ">
                             <p class="text-[#FF001A] font-[600] text-[14px]">
-                                Rp 45.000
+                                Rp <?php echo e(number_format($product->price)); ?>
+
                             </p>
                             <button type="button"
                                 class="flex items-center justify-center w-[24px] h-[24px] rounded-full bg-transparent"
-                                data-id="1" onclick="addToCart(this.dataset.id)">
-                                <img src="assets/images/icons/ic_plus.svg" class="w-full h-full" alt="icon">
+                                data-id="<?php echo e($product->id); ?>" onclick="addToCart(this.dataset.id)">
+                                <img src="<?php echo e(asset('assets/images/icons/ic_plus.svg')); ?>" class="w-full h-full"
+                                    alt="icon">
                             </button>
                         </div>
                     </div>
@@ -121,66 +127,47 @@
         <a href="#" class="text-[#FF801A] text-sm ">See All</a>
     </div>
     <div class="flex flex-col gap-4 mt-[10px]">
-        <a href="details.html" class="card">
+
+        <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <a href="<?php echo e(route('product.show', ['username'=> $store->username, 'id' => $product->id])); ?>" class="card">
             <div
                 class="flex rounded-[8px] border border-[#F1F2F6] p-[12px] gap-4 bg-white hover:bg-[#FFF7F0] hover:border-[1px] hover:border-[#F3AF00] transition-all duration-300">
-                <img src="assets/images/photos/ramen.png" class="w-[128px] object-cover rounded-[8px]" alt="icon">
+                <img src="<?php echo e(asset('storage/' . $product->image)); ?>" class="w-[128px] object-cover rounded-[8px]"
+                    alt="icon">
                 <div class="flex flex-col gap-1 w-full">
                     <p class="text-[#F3AF00] font-[400] text-[12px]">
-                        Ramen
+                        <?php echo e($product->productCategory->name); ?>
+
                     </p>
                     <h3 class="text-[#353535] font-[500] text-[14px]">
-                        Spicy Ramen Level 3
+                        <?php echo e($product->name); ?>
+
                     </h3>
                     <p class="text-[#606060] font-[400] text-[10px]">
-                        Rich broth, spicy and tempting, with chashu topping
+                        <?php echo e($product->description); ?>
+
                     </p>
 
                     <div class="flex items-center justify-between ">
                         <p class="text-[#FF001A] font-[600] text-[14px]">
-                            Rp 45.000
+                            Rp <?php echo e(number_format($product->price)); ?>
+
                         </p>
                         <button type="button"
                             class="flex items-center justify-center w-[24px] h-[24px] rounded-full bg-transparent"
-                            data-id="1" onclick="addToCart(this.dataset.id)">
-                            <img src="assets/images/icons/ic_plus.svg" class="w-full h-full" alt="icon">
+                            data-id="<?php echo e($product->id); ?>" onclick="addToCart(this.dataset.id)">
+                            <img src="<?php echo e(asset('assets/images/icons/ic_plus.svg')); ?>" class="w-full h-full" alt="icon">
                         </button>
                     </div>
                 </div>
             </div>
         </a>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-        <a href="details.html" class="card">
-            <div
-                class="flex rounded-[8px] border border-[#F1F2F6] p-[12px] gap-4 bg-white hover:bg-[#FFF7F0] hover:border-[1px] hover:border-[#F3AF00] transition-all duration-300">
-                <img src="assets/images/photos/Fried Chicken High Angle Shot.png"
-                    class="w-[128px] object-cover rounded-[8px]" alt="icon">
-                <div class="flex flex-col gap-1 w-full">
-                    <p class="text-[#F3AF00] font-[400] text-[12px]">
-                        Chicken
-                    </p>
-                    <h3 class="text-[#353535] font-[500] text-[14px]">
-                        Chicken Karaage
-                    </h3>
-                    <p class="text-[#606060] font-[400] text-[10px]">
-                        Crispy Japanese-style fried chicken, served with a tangy
-                    </p>
-
-                    <div class="flex items-center justify-between ">
-                        <p class="text-[#FF001A] font-[600] text-[14px]">
-                            Rp 45.000
-                        </p>
-                        <button type="button"
-                            class="flex items-center justify-center w-[24px] h-[24px] rounded-full bg-transparent"
-                            data-id="1" onclick="addToCart(this.dataset.id)">
-                            <img src="assets/images/icons/ic_plus.svg" class="w-full h-full" alt="icon">
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </a>
     </div>
 </div>
+
+<?php echo $__env->make('Layouts.navigation', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('Layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /usr/www/E-Menu/resources/views/Pages/index.blade.php ENDPATH**/ ?>

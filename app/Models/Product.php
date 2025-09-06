@@ -25,17 +25,39 @@ class Product extends Model
         "price"=> "decimal:2",
     ];
 
-    public static function boot(){
+
+    public static function boot()
+    {
         parent::boot();
 
-        static::creating(function($product){
-            $product->user_id = Auth::user()->id;
+        // Saat create
+        static::creating(function ($product) {
+            // kalau belum login, jangan apa-apa
+            if (!Auth::check()) {
+                return;
+            }
+
+            // kalau bukan admin, otomatis set user_id
+            if (Auth::user()->role !== 'admin') {
+                $product->user_id = Auth::id();
+            }
+            // kalau admin, biarkan saja field user_id dari form kalau ada
         });
 
-        static::updating(function($product){
-            $product->user_id = Auth::user()->id;
+        // Saat update
+        static::updating(function ($product) {
+            // kalau tidak login, jangan diapa-apain
+            if (!Auth::check()) {
+                return;
+            }
+
+            // hanya update user_id kalau bukan admin
+            if (Auth::user()->role !== 'admin') {
+                $product->user_id = Auth::id();
+            }
         });
     }
+
 
     public function user()
     {
