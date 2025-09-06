@@ -13,7 +13,7 @@
                         Home</p>
 
                 </a>
-                <a href="{{ route('index', $store->username) }}" class="flex flex-col items-center gap-2">
+                <a href="{{ route('cart', $store->username) }}" class="flex flex-col items-center gap-2">
                     <div class="relative">
                         <img src="{{asset('assets/images/icons/Buy.svg')}}" class="w-[24px] h-[24px]" alt="icon">
                         <div
@@ -24,7 +24,8 @@
                     <p class="text-[#606060] font-[400] text-[12px]">Cart</p>
                 </a>
                 <a href="{{ route('product.find', $store->username) }}" class="flex flex-col items-center gap-2 ">
-                    @if (Route::current()->getName() == 'product.find')
+                    @if (Route::current()->getName() == 'product.find' || Route::current()->getName() ==
+                    'product.find.results')
                     <img src="{{asset('assets/images/icons/Search.svg')}}" class="w-[24px] h-[24px]" alt="icon">
                     @else
                     <img src="{{asset('assets/images/icons/Search_default.svg')}}" class="w-[24px] h-[24px]" alt="icon">

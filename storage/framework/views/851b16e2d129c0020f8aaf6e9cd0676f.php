@@ -10,6 +10,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -26,6 +27,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="<?php echo e(asset('assets/js/index.js')); ?>"></script>
+    <?php echo $__env->yieldContent('script'); ?>
 </body>
 
 </html><?php /**PATH /usr/www/E-Menu/resources/views/Layouts/app.blade.php ENDPATH**/ ?>

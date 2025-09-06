@@ -11,7 +11,7 @@
         </div>
         <a href="#"
             class="w-12 h-12 flex items-center justify-center shrink-0 rounded-full overflow-hidden bg-white bg-opacity-20">
-            <img src="assets/images/icons/ic_bell.svg" class="w-[28px] h-[28px]" alt="icon">
+            <img src="<?php echo e(asset('assets/images/icons/ic_bell.svg')); ?>" class="w-[28px] h-[28px]" alt="icon">
         </a>
     </div>
 
@@ -20,7 +20,7 @@
     <div class="absolute bottom-0 left-0 right-0 w-full gap-2 px-5">
         <label
             class="flex items-center w-full rounded-full p-[8px_8px] gap-3 bg-white ring-1 ring-[#F1F2F6] focus-within:ring-[#F3AF00] transition-all duration-300">
-            <img src="assets/images/icons/ic_search.svg" class="w-8 h-8 flex shrink-0" alt="icon">
+            <img src="<?php echo e(asset('assets/images/icons/ic_search.svg')); ?>" class="w-8 h-8 flex shrink-0" alt="icon">
             <input type="text" name="search" id=""
                 class="appearance-none outline-none w-full font-semibold placeholder:text-ngekos-grey placeholder:font-light"
                 placeholder="Search menu, or etc...">
@@ -38,7 +38,8 @@
         <div class="swiper-wrapper mt-[20px]">
             <?php $__currentLoopData = $store->productCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-            <a href="#" class="swiper-slide !w-fit">
+            <a href="<?php echo e(route('product.find.results', $store->username)  . '?category=' . $category->slug); ?>"
+                class="swiper-slide !w-fit">
                 <div class="flex flex-col items-center shrink-0 gap-2 text-center">
                     <div
                         class="w-[64px] h-[64px] rounded-full flex shrink-0 overflow-hidden p-4 bg-[#9393931A] bg-opacity-10">

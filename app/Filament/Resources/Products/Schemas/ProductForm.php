@@ -86,9 +86,6 @@ class ProductForm
                             ->image()
                             ->imagePreviewHeight(300)
                             ->imageResizeMode('cover')
-                            ->imageResizeTargetWidth(1024)
-                            ->imageResizeTargetHeight(1024)
-                            ->maxSize(2048)
                             ->required(),
                     ]),
                 Repeater::make('productIngredients')

@@ -1,5 +1,7 @@
 const selectPayment = (paymentMethod) => {
-    const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+    const paymentMethods = document.querySelectorAll(
+        'input[name="payment_method"]'
+    );
     paymentMethods.forEach((element) => {
         element.parentElement.style.backgroundColor = "#F1F2F6";
         element.parentElement.style.color = "#353535";
@@ -12,15 +14,16 @@ const selectPayment = (paymentMethod) => {
     });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+document.addEventListener("DOMContentLoaded", () => {
+    const paymentMethods = document.querySelectorAll(
+        'input[name="payment_method"]'
+    );
     paymentMethods.forEach((element) => {
-        element.addEventListener('click', () => {
+        element.addEventListener("click", () => {
             selectPayment(element.value);
         });
     });
 });
-
 
 document.addEventListener("DOMContentLoaded", function () {
     // Ambil data cart dari localStorage
@@ -42,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const qtyElement = item.querySelector("#qty");
             const notesInput = item.querySelector("#notes");
 
-            if (qtyElement) qtyElement.textContent = 'x' + cartProduct.qty;
+            if (qtyElement) qtyElement.textContent = "x" + cartProduct.qty;
             if (notesInput) notesInput.value = cartProduct.notes;
         }
     });
@@ -54,20 +57,25 @@ document.addEventListener("DOMContentLoaded", function () {
 function calculateTotal() {
     const cartItems = document.querySelectorAll(".cart-item");
     let total = 0;
-    cartItems.forEach(cartItem => {
+    cartItems.forEach((cartItem) => {
         const priceElement = cartItem.querySelector('p[id="price"]');
-        const price = parseInt(priceElement.textContent.replace(/[^0-9]/g, ''), 10);
-        const qtyElement = cartItem.querySelector('#qty');
-        const qty = parseInt(qtyElement.textContent.replace(/[^0-9]/g, ''), 10);
+        const price = parseInt(
+            priceElement.textContent.replace(/[^0-9]/g, ""),
+            10
+        );
+        const qtyElement = cartItem.querySelector("#qty");
+        const qty = parseInt(qtyElement.textContent.replace(/[^0-9]/g, ""), 10);
         total += price * qty;
     });
-    document.getElementById('totalAmount').textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    document.getElementById(
+        "totalAmount"
+    ).textContent = `Rp ${total.toLocaleString("id-ID")}`;
 }
 
-const paymentForm = document.getElementById('Form');
-const cartData = document.getElementById('cart-data');
+const paymentForm = document.getElementById("Form");
+const cartData = document.getElementById("cart-data");
 
-paymentForm.addEventListener('submit', (event) => {
+paymentForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 

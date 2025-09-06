@@ -38,15 +38,10 @@ class ProductCategoryForm
                         FileUpload::make('icon')
                             ->label('Icon Kategori')
                             ->required()
-                                // ->visibility('public')
-                                // ->disk('public')
                             ->image()
                             ->imageEditor()
                             ->imagePreviewHeight(250)          // Preview lebih besar agar tidak buram
                             ->imageResizeMode('cover')         // Menjaga aspect ratio
-                            ->imageResizeTargetWidth(400)      // Resize lebar maksimal
-                            ->imageResizeTargetHeight(400)     // Resize tinggi maksimal
-                            ->maxSize(2048)                    // Maks 2MB (2048 KB)
                             ->columnSpanFull(),
 
 
