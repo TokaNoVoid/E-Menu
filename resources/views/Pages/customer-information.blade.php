@@ -54,7 +54,7 @@
             <img src="{{asset('assets/images/icons/Edit.svg')}}" class="w-5 h-5 flex shrink-0" alt="icon">
             <input type="text" name="notes" id="notes" data-id="{{ $product->id }}"
                 class="appearance-none outline-none w-full font-regular placeholder:text-ngekos-grey placeholder:font-normal"
-                placeholder="Write notes..." readonly>
+                placeholder="-" readonly>
         </label>
     </div>
 
@@ -85,7 +85,7 @@
                     <label
                         class="flex items-center w-full rounded-[8px] p-[14px_20px] gap-3 bg-white ring-1 ring-[#F3AF003D] ring-opacity-5 focus-within:ring-[#F3AF00] focus-within:ring-opacity-100 transition-all duration-300">
                         <img src="{{asset('assets/images/icons/Call.svg')}}" class="w-5 h-5 flex shrink-0" alt="icon">
-                        <input type="text" name="phone_number" id=""
+                        <input type="number" name="phone_number" id=""
                             class="appearance-none outline-none w-full font-regular placeholder:text-ngekos-grey placeholder:font-light"
                             placeholder="Enter your phone number..." required>
                     </label>
@@ -97,7 +97,7 @@
                         class="flex items-center w-full rounded-[8px] p-[14px_20px] gap-3 bg-white ring-1 ring-[#F3AF003D] ring-opacity-5 focus-within:ring-[#F3AF00] focus-within:ring-opacity-100 transition-all duration-300">
                         <img src="{{asset('assets/images/icons/Document.svg')}}" class="w-5 h-5 flex shrink-0"
                             alt="icon">
-                        <input type="text" name="table_number" id=""
+                        <input type="number" name="table_number" id=""
                             class="appearance-none outline-none w-full font-regular placeholder:text-ngekos-grey placeholder:font-light"
                             placeholder="Enter your table number...." required>
                     </label>

@@ -64,7 +64,7 @@
 
 </div>
 
-<form action="<?php echo e(route('payment', $store->username)); ?>" id="Form" method="POST" target="_blank">
+<form action="<?php echo e(route('payment', $store->username)); ?>" id="Form" method="POST">
     <?php echo csrf_field(); ?>
     <div id="Informations" class="relative flex flex-col px-5">
         <div class="w-full flex flex-col rounded-[8px] border border-[#F1F2F6] p-5 gap-6 bg-white mt-6">
